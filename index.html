@@ -43,12 +43,12 @@
     <i class="iconfont music-close">&#xea28;</i>
     <!-- <audio class="audio" src="./media/dongxi-md.mp3" preload autoplay loop></audio>  -->
     <audio class="audio" preload autoplay loop>
-      <source src="./media/zui-mei-qing-lv-cut.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio> 
+      <source src="./media/sejaParaMim.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio> 
   </div>
   <div class="banner ovh">
     <div class="swiper-wrap">
-      <img id="current-img" src="./images/photo7.jpg" alt="">
-      <p class="img-intro">Nós</p>
+      <img id="current-img" src="./images/photo8.jpg" alt="">
+      <p class="img-intro">Só quero te dizer que te amo!</p>
     </div>
   </div>
   <p class="intro self-design">Nosso tempinho junto</p>
@@ -292,42 +292,45 @@
       event.preventDefault();
   }, false);
 
-  function loadImage(imgIndex) {
+  function loadImage(imgIndex, imgDescrip) {
       // console.log('imgIndex:',imgIndex);
       // var img = new Image();
-      curImgDom.src = imgList[imgIndex];
+      curImgDom.src = imgIndex;
       // curImgDom.setAttribute('src', imgList[imgIndex]);
       if (isInitImage) {
-          $('.img-intro').text(imgDescList[imgIndex]);
+          $('.img-intro').text(imgDescList[imgDescrip]);
           return;
       }else {
           // curImgDom.src = imgList[imgIndex];
           if (curImgDom.complete) {
-              $('.img-intro').text(imgDescList[imgIndex]);
+              $('.img-intro').text(imgDescList[imgDescrip]);
               return false;
           }
           curImgDom.onload = function () {
-              $('.img-intro').text(imgDescList[imgIndex]);
+              $('.img-intro').text(imgDescList[imgDescrip]);
           };
       }
       
   }
-  var imgList = ['./images/photo1.jpg', './images/photo2.jpg', './images/photo3.jpg', './images/photo4.jpg', './images/photo5.jpg', './images/photo6.jpg', './images/photo7.jpg'];
-  var imgDescList = ['让我们携手放飞梦想,扬帆起航','想不到被我拍到了吧，最喜欢下班后吃到香喷喷的饭菜了。','TIT创意园,这够不够创意啦!<br>!','名师出高徒可不是闹着玩的。','第一次用抖音拍照，效果不赖吧！','宝贝,祝你在新的一年里红红火火，行大运！','Jorge'];
+
+  var imgLenght = 9;
+  // var imgList = ['./images/photo1.jpg', './images/photo2.jpg', './images/photo3.jpg', './images/photo4.jpg', './images/photo5.jpg', './images/photo6.jpg', './images/photo7.jpg'];
+  var imgDescList = ['Um fim de ano inesquecivel','Se bem que com você, tudo é insequecível','Nossa primeira viagem sozinhos!','Tuas alegrias se tornam as minhas','Você que faz meu sorriso todo dia！','Em qualquer lugar que estamos！','A minha maior alegria é você!', "E te ter em meus braços, é segurar o mundo!", "Só quero te dizer que te amo!"];
   var isInitImage = false;
   var imgIndex = 0;
   function setTimer(){
       var timer = setInterval(function() {
-          imgIndex = 1 + imgIndex;
-          if (imgIndex > (imgList.length - 1)) {
+          
+          if (imgIndex > (imgLenght - 1)) {
               imgIndex = 0;
               if (!isInitImage) {
                   isInitImage = true;
                   curImgDom.onload = null;
               }
           }
-          imgIndex = (imgIndex > (imgList.length - 1)) ? 0 : imgIndex;
-          loadImage(imgIndex);
+          imgIndex = (imgIndex > (imgLenght - 1)) ? 0 : imgIndex;
+          loadImage(`./images/photo${imgIndex}.jpg`, imgIndex)
+          imgIndex += 1;
       }, 3000);
       return timer;
   }
